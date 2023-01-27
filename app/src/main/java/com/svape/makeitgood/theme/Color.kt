@@ -1,4 +1,4 @@
-package com.svape.makeitgood.ui.theme
+package com.svape.makeitgood.theme
 
 import androidx.compose.ui.graphics.Color
 
