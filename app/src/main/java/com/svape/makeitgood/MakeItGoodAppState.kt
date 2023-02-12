@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 @Stable
-class MakeItSoAppState (
+class MakeItGoodAppState (
     val scaffoldState: ScaffoldState,
     val navController: NavHostController,
     private val snackbarManager: SnackbarManager,
