@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.svape.makeitgood.common.snackbar.SnackbarManager
+import com.svape.makeitgood.screens.settings.SettingsScreen
 import com.svape.makeitgood.theme.MakeItGoodTheme
 import kotlinx.coroutines.CoroutineScope
 import com.svape.makeitgood.screens.splash.SplashScreen
@@ -78,6 +79,14 @@ fun resources(): Resources {
 fun NavGraphBuilder.makeItGoodGraph(appState: MakeItGoodAppState) {
     composable(SPLASH_SCREEN) {
         SplashScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+
+    composable(SETTINGS_SCREEN) {
+        SettingsScreen(
+            restartApp = { route -> appState.clearAndNavigate(route) },
+            openScreen = { appState.navigate(route.toString()) }
+        )
     }
 }
 
