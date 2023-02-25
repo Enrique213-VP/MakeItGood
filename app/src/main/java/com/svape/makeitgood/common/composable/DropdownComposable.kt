@@ -11,21 +11,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
-@ExperimentalMaterialApi
 @Composable
+@ExperimentalMaterialApi
 fun DropdownContextMenu(
     options: List<String>,
     modifier: Modifier,
     onActionClick: (String) -> Unit
 ) {
-    var isExpanded by remember {
-        mutableStateOf(false)
-    }
+    var isExpanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
         expanded = isExpanded,
-        onExpandedChange = { isExpanded = !isExpanded },
-        modifier = Modifier
+        modifier = modifier,
+        onExpandedChange = { isExpanded = !isExpanded }
     ) {
         Icon(
             modifier = Modifier.padding(8.dp, 0.dp),
@@ -34,14 +32,17 @@ fun DropdownContextMenu(
         )
 
         ExposedDropdownMenu(
-            expanded = isExpanded,
             modifier = Modifier.width(180.dp),
-            onDismissRequest = { isExpanded = false }) {
+            expanded = isExpanded,
+            onDismissRequest = { isExpanded = false }
+        ) {
             options.forEach { selectionOption ->
-                DropdownMenuItem(onClick = {
-                    isExpanded = false
-                    onActionClick(selectionOption)
-                }) {
+                DropdownMenuItem(
+                    onClick = {
+                        isExpanded = false
+                        onActionClick(selectionOption)
+                    }
+                ) {
                     Text(text = selectionOption)
                 }
             }

@@ -24,12 +24,12 @@ fun ActionToolbar(
     endAction: () -> Unit
 ) {
     TopAppBar(
-        title = { Text(stringResource(title))},
+        title = { Text(stringResource(title)) },
         backgroundColor = toolbarColor(),
         actions = {
             Box(modifier) {
                 IconButton(onClick = endAction) {
-                    Icon(painter = painterResource(endActionIcon), contentDescription = "Action" )
+                    Icon(painter = painterResource(endActionIcon), contentDescription = "Action")
                 }
             }
         }

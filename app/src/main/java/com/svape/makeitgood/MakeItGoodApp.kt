@@ -1,23 +1,18 @@
 package com.svape.makeitgood
 
 import android.content.res.Resources
-import android.window.SplashScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
 import com.svape.makeitgood.common.snackbar.SnackbarManager
+import com.svape.makeitgood.screens.login.LoginScreen
 import com.svape.makeitgood.screens.settings.SettingsScreen
 import com.svape.makeitgood.theme.MakeItGoodTheme
 import kotlinx.coroutines.CoroutineScope
@@ -87,6 +82,10 @@ fun NavGraphBuilder.makeItGoodGraph(appState: MakeItGoodAppState) {
             restartApp = { route -> appState.clearAndNavigate(route) },
             openScreen = { appState.navigate(route.toString()) }
         )
+    }
+
+    composable(LOGIN_SCREEN) {
+        LoginScreen()
     }
 }
 

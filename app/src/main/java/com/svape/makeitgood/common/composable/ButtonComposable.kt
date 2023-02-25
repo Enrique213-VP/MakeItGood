@@ -10,9 +10,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun BasicTextButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
-    TextButton(onClick = action, modifier = modifier) {
-        Text(text = stringResource(text))
-    }
+    TextButton(onClick = action, modifier = modifier) { Text(text = stringResource(text)) }
 }
 
 @Composable
@@ -26,7 +24,7 @@ fun BasicButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
             contentColor = MaterialTheme.colors.onPrimary
         )
     ) {
-        Text(text = stringResource(text), fontSize = 18.sp)
+        Text(text = stringResource(text), fontSize = 16.sp)
     }
 }
 
@@ -57,4 +55,3 @@ fun DialogCancelButton(@StringRes text: Int, action: () -> Unit) {
         Text(text = stringResource(text))
     }
 }
-

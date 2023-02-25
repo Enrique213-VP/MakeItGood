@@ -14,18 +14,6 @@ import com.svape.makeitgood.common.ext.dropdownSelector
 
 @ExperimentalMaterialApi
 @Composable
-fun RegularCardEditor(
-    @StringRes title: Int,
-    @DrawableRes icon: Int,
-    content: String,
-    modifier: Modifier,
-    onEditClick: () -> Unit
-) {
-    CardEditor(title, icon, content, modifier, onEditClick, MaterialTheme.colors.onSurface)
-}
-
-@ExperimentalMaterialApi
-@Composable
 fun DangerousCardEditor(
     @StringRes title: Int,
     @DrawableRes icon: Int,
@@ -33,18 +21,30 @@ fun DangerousCardEditor(
     modifier: Modifier,
     onEditClick: () -> Unit
 ) {
-    CardEditor(title, icon, content, modifier, onEditClick, MaterialTheme.colors.primary)
+    CardEditor(title, icon, content, onEditClick, MaterialTheme.colors.primary, modifier)
 }
 
 @ExperimentalMaterialApi
 @Composable
-fun CardEditor(
+fun RegularCardEditor(
     @StringRes title: Int,
     @DrawableRes icon: Int,
     content: String,
     modifier: Modifier,
+    onEditClick: () -> Unit
+) {
+    CardEditor(title, icon, content, onEditClick, MaterialTheme.colors.onSurface, modifier)
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun CardEditor(
+    @StringRes title: Int,
+    @DrawableRes icon: Int,
+    content: String,
     onEditClick: () -> Unit,
-    highlightColor: Color
+    highlightColor: Color,
+    modifier: Modifier
 ) {
     Card(
         backgroundColor = MaterialTheme.colors.onPrimary,
@@ -53,30 +53,21 @@ fun CardEditor(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(stringResource(title), color = highlightColor)
-            }
+            Column(modifier = Modifier.weight(1f)) { Text(stringResource(title), color = highlightColor) }
 
             if (content.isNotBlank()) {
                 Text(text = content, modifier = Modifier.padding(16.dp, 0.dp))
             }
 
-            Icon(
-                painter = painterResource(icon),
-                contentDescription = "Icon",
-                tint = highlightColor
-            )
+            Icon(painter = painterResource(icon), contentDescription = "Icon", tint = highlightColor)
         }
     }
 }
 
-
-@ExperimentalMaterialApi
 @Composable
+@ExperimentalMaterialApi
 fun CardSelector(
     @StringRes label: Int,
     options: List<String>,
@@ -85,6 +76,6 @@ fun CardSelector(
     onNewValue: (String) -> Unit
 ) {
     Card(backgroundColor = MaterialTheme.colors.onPrimary, modifier = modifier) {
-        DropdownSelector(label, options, selection, modifier.dropdownSelector(), onNewValue)
+        DropdownSelector(label, options, selection, Modifier.dropdownSelector(), onNewValue)
     }
 }
