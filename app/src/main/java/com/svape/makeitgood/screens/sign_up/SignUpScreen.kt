@@ -1,4 +1,4 @@
-package com.svape.makeitgood.screens.login
+package com.svape.makeitgood.screens.sign_up
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -8,31 +8,32 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.svape.makeitgood.common.composable.*
-import com.svape.makeitgood.common.ext.*
+import com.svape.makeitgood.common.ext.basicButton
+import com.svape.makeitgood.common.ext.fieldModifier
 import com.svape.makeitgood.R.string as AppText
 
 @Composable
-fun LoginScreen(
+fun SignUpScreen(
     openAndPopUp: (String, String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState
+    val fieldModifier = Modifier.fieldModifier()
 
-    BasicToolbar(AppText.login_details)
+    BasicToolbar(AppText.create_account)
 
     Column(
         modifier = modifier.fillMaxWidth().fillMaxHeight().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        EmailField(uiState.email, viewModel::onEmailChange, Modifier.fieldModifier())
-        PasswordField(uiState.password, viewModel::onPasswordChange, Modifier.fieldModifier())
+        EmailField(uiState.email, viewModel::onEmailChange, fieldModifier)
+        PasswordField(uiState.password, viewModel::onPasswordChange, fieldModifier)
+        RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
 
-        BasicButton(AppText.sign_in, Modifier.basicButton()) { viewModel.onSignInClick(openAndPopUp) }
-
-        BasicTextButton(AppText.forgot_password, Modifier.textButton()) {
-            viewModel.onForgotPasswordClick()
+        BasicButton(AppText.create_account, Modifier.basicButton()) {
+            viewModel.onSignUpClick(openAndPopUp)
         }
     }
 }

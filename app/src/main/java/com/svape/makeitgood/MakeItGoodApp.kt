@@ -11,12 +11,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 import com.svape.makeitgood.common.snackbar.SnackbarManager
+import com.svape.makeitgood.screens.edit_task.EditTaskScreen
 import com.svape.makeitgood.screens.login.LoginScreen
 import com.svape.makeitgood.screens.settings.SettingsScreen
+import com.svape.makeitgood.screens.sign_up.SignUpScreen
 import com.svape.makeitgood.theme.MakeItGoodTheme
 import kotlinx.coroutines.CoroutineScope
 import com.svape.makeitgood.screens.splash.SplashScreen
+import com.svape.makeitgood.screens.task.TasksScreen
 
 
 @Composable
@@ -85,7 +89,23 @@ fun NavGraphBuilder.makeItGoodGraph(appState: MakeItGoodAppState) {
     }
 
     composable(LOGIN_SCREEN) {
-        LoginScreen()
+        LoginScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+    composable(SIGN_UP_SCREEN) {
+        SignUpScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+    composable(TASKS_SCREEN) { TasksScreen(openScreen = { route -> appState.navigate(route) }) }
+
+    composable(
+        route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",
+        arguments = listOf(navArgument(TASK_ID) { defaultValue = TASK_DEFAULT_ID })
+    ) {
+        EditTaskScreen(
+            popUpScreen = { appState.popUp() },
+            taskId = it.arguments?.getString(TASK_ID) ?: TASK_DEFAULT_ID
+        )
     }
 }
 

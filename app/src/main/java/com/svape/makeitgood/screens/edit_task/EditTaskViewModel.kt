@@ -1,7 +1,5 @@
 package com.svape.makeitgood.screens.edit_task
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.*
 import androidx.compose.runtime.*
 import com.svape.makeitgood.TASK_DEFAULT_ID
 import com.svape.makeitgood.common.ext.idFromParameter
