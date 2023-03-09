@@ -1,6 +1,7 @@
 package com.svape.makeitgood.screens.settings
 
 import com.svape.makeitgood.LOGIN_SCREEN
+import com.svape.makeitgood.SIGN_UP_SCREEN
 import com.svape.makeitgood.SPLASH_SCREEN
 import com.svape.makeitgood.model.service.AccountService
 import com.svape.makeitgood.model.service.LogService
@@ -21,9 +22,11 @@ class SettingsViewModel @Inject constructor(
 
     fun onLoginClick(openScreen: (String) -> Unit) = openScreen(LOGIN_SCREEN)
 
+    fun onSignUpClick(openScreen: (String) -> Unit) = openScreen(SIGN_UP_SCREEN)
+
     fun onSignOutClick(restartApp: (String) -> Unit) {
         launchCatching {
-            accountService.singOut()
+            accountService.signOut()
             restartApp(SPLASH_SCREEN)
         }
     }

@@ -10,10 +10,10 @@ sealed class SnackbarMessage {
 
     companion object {
         fun SnackbarMessage.toMessage(resources: Resources): String {
-         return when (this) {
-             is StringSnackbar -> this.message
-             is ResourceSnackbar -> resources.getString(this.message)
-         }
+            return when (this) {
+                is StringSnackbar -> this.message
+                is ResourceSnackbar -> resources.getString(this.message)
+            }
         }
 
         fun Throwable.toSnackbarMessage(): SnackbarMessage {

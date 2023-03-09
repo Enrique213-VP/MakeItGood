@@ -42,23 +42,19 @@ fun SettingsScreen(
                 viewModel.onLoginClick(openScreen)
             }
 
-            RegularCardEditor(
-                AppText.create_account,
-                AppIcon.ic_create_account,
-                "",
-                Modifier.card()
-            ) {
-                viewModel.onSignOutClick(openScreen)
+            RegularCardEditor(AppText.create_account, AppIcon.ic_create_account, "", Modifier.card()) {
+                viewModel.onSignUpClick(openScreen)
             }
         } else {
-            SingOutCard {}
+            SignOutCard { viewModel.onSignOutClick(restartApp) }
+            DeleteMyAccountCard { viewModel.onDeleteMyAccountClick(restartApp) }
         }
     }
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun SingOutCard(singOut: () -> Unit) {
+private fun SignOutCard(singOut: () -> Unit) {
     var showWarningDialog by remember {
         mutableStateOf(false)
     }

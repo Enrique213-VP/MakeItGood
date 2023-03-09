@@ -36,7 +36,7 @@ fun MakeItGoodApp() {
                         hostState = it,
                         modifier = Modifier.padding(8.dp),
                         snackbar = { snackbarData ->
-                            Snackbar(snackbarData, contentColor = MaterialTheme.colors.primary)
+                            Snackbar(snackbarData, contentColor = MaterialTheme.colors.onPrimary)
                         }
                     )
                 },
@@ -84,7 +84,7 @@ fun NavGraphBuilder.makeItGoodGraph(appState: MakeItGoodAppState) {
     composable(SETTINGS_SCREEN) {
         SettingsScreen(
             restartApp = { route -> appState.clearAndNavigate(route) },
-            openScreen = { appState.navigate(route.toString()) }
+            openScreen = { route -> appState.navigate(route) }
         )
     }
 

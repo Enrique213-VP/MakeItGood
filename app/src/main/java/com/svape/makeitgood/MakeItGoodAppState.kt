@@ -22,7 +22,7 @@ class MakeItGoodAppState (
 ) {
     init {
         coroutineScope.launch {
-            snackbarManager.snackbarMessage.filterNotNull().collect() {  snackbarMessage ->
+            snackbarManager.snackbarMessages.filterNotNull().collect { snackbarMessage ->
                 val text = snackbarMessage.toMessage(resources)
                 scaffoldState.snackbarHostState.showSnackbar(text)
             }
@@ -34,20 +34,20 @@ class MakeItGoodAppState (
     }
 
     fun navigate(route: String) {
-        navController.navigate(route) { launchSingleTop = true}
+        navController.navigate(route) { launchSingleTop = true }
     }
 
     fun navigateAndPopUp(route: String, popUp: String) {
         navController.navigate(route) {
             launchSingleTop = true
-            popUpTo(popUp) { inclusive = true}
+            popUpTo(popUp) { inclusive = true }
         }
     }
 
     fun clearAndNavigate(route: String) {
         navController.navigate(route) {
             launchSingleTop = true
-            popUpTo(0) { inclusive = true}
+            popUpTo(0) { inclusive = true }
         }
     }
 }
