@@ -1,6 +1,6 @@
 <resources>
     <!-- Common -->
-    <string name="app_name">Make It good</string>
+    <string name="app_name">To do List</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="repeat_password">Repeat password</string>
